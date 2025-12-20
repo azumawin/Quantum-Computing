@@ -1,0 +1,5 @@
+/QC
+*.aux
+*.log
+*.out
+*.synctex.gz

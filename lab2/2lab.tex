@@ -1,0 +1,287 @@
+\documentclass[11pt, parskip=half]{scrartcl}
+
+\usepackage[lithuanian]{azuma}
+\usepackage[raggedbottom]{stablespacing}
+\usepackage[a4paper, margin=1in]{geometry} % center margins
+\usepackage{needspace}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\setlist[itemize]{topsep=0pt, itemsep=0.1em} %partopsep, parsep
+
+\begin{document}
+    \title{2-as lab. darbas}
+    \subtitle{9-as variantas}
+    \maketitle
+
+    % ----- PROBLEM 1 -----
+    \begin{problem}
+        Ar duotieji trys vektoriai yra tiesiškai nepriklausomi?
+        \[
+        \vec v_1=
+        \begin{pmatrix}
+        -3-i\\
+        -5-i\\
+        -4-2i\\
+        2-3i
+        \end{pmatrix},
+        \qquad
+        \vec v_2=
+        \begin{pmatrix}
+        3-3i\\
+        -5-5i\\
+        3-4i\\
+        4+i
+        \end{pmatrix},
+        \qquad
+        \vec v_3=
+        \begin{pmatrix}
+        -3-3i\\
+        -3+4i\\
+        -4-5i\\
+        3+3i
+        \end{pmatrix}.
+        \]
+    \end{problem}
+
+    \begin{solution}
+        Vektoriai $v_1, v_2, \dots, v_k$ yra tiesiškai priklausomi jei egzistuoja realūs (šiuo atveju kompleksiniai) skaičiai
+        $c_1, c_2, \dots, c_k$, kurie nėra visi nuliai, tokie kad:
+        \[
+        c_1\vec{v}_1 + c_2\vec{v}_2 + \dots + c_k\vec{v}_k = \vec{0}
+        \]
+        Taigi, turime lygčių sistemą:
+        \[
+        c_1\vec v_1+c_2\vec v_2+c_3\vec v_3=\vec 0
+        \iff
+        \begin{cases}
+        (-3-i)c_1 + (3-3i)c_2 + (-3-3i)c_3 = 0,\\
+        (-5-i)c_1 + (-5-5i)c_2 + (-3+4i)c_3 = 0,\\
+        (-4-2i)c_1 + (3-4i)c_2 + (-4-5i)c_3 = 0,\\
+        (2-3i)c_1 + (4+i)c_2 + (3+3i)c_3 = 0.
+        \end{cases}
+        \]
+        Lygčių sistemą paverčiam į Gauso eliminacijos matricą:
+        \[
+        \left[
+        \begin{array}{ccc|c}
+        -3-i & 3-3i & -3-3i & 0\\
+        -5-i & -5-5i & -3+4i & 0\\
+        -4-2i & 3-4i & -4-5i & 0\\
+        2-3i & 4+i & 3+3i & 0
+        \end{array}
+        \right]
+        \]
+        Pirmiausia panaikinam $c_1$ koeficientus 2-oje, 3-ioje ir 4-oje eilutėse, iš $i$-tosios $i \in \left\{2, 3, 4\right\}$ eilutės
+        atėmę $1$-ą eilutę padaugintą iš $m_i$, kur:
+        \[
+        m_2=\frac{-5-i}{-3-i}=\frac{8-i}{5},\qquad
+        m_3=\frac{-4-2i}{-3-i}=\frac{7+i}{5},\qquad
+        m_4=\frac{2-3i}{-3-i}=\frac{-3+11i}{10}.
+        \]
+        
+        Gauname:
+        \[
+        \sim
+        \left[
+        \begin{array}{ccc|c}
+        -3-i & 3-3i & -3-3i & 0\\
+        0 & -\frac{46}{5}+\frac{2}{5}i & \frac{12}{5}+\frac{41}{5}i & 0\\
+        0 & -\frac{9}{5}-\frac{2}{5}i & -\frac{2}{5}-\frac{1}{5}i & 0\\
+        0 & \frac{8}{5}-\frac{16}{5}i & -\frac{6}{5}+\frac{27}{5}i & 0
+        \end{array}
+        \right].
+        \]
+
+        Toliau taip pat panaikinam $c_2$ koeficientus 3-ioje ir 4-oje eilutėse:
+        \[
+        n_3=\frac{-\frac{9}{5}-\frac{2}{5}i}{-\frac{46}{5}+\frac{2}{5}i}=\frac{41+11i}{212},\qquad
+        n_4=\frac{\frac{8}{5}-\frac{16}{5}i}{-\frac{46}{5}+\frac{2}{5}i}=\frac{-10+18i}{53}.
+        \]
+        Gaunam:
+        \[
+        \sim
+        \left[
+        \begin{array}{ccc|c}
+        -3-i & 3-3i & -3-3i & 0\\
+        0 & -\frac{46}{5}+\frac{2}{5}i & \frac{12}{5}+\frac{41}{5}i & 0\\
+        0 & 0 & -\frac{93}{212}-\frac{405}{212}i & 0\\
+        0 & 0 & \frac{108}{53}+\frac{325}{53}i & 0
+        \end{array}
+        \right].
+        \]
+
+        Matosi, kad vienintelis sistemos sprendinys yra $(c_1, c_2, c_3) = (0, 0, 0)$, todėl vektoriai $v_1, v_2, v_3$ yra tiesiškai nepriklausomi.
+    \end{solution}
+
+    % ----- PROBLEM 2 -----
+    \begin{problem}
+        Raskite $B^2 + 3A^{\dagger}C^{-2} + (A^{-1})^{\dagger}$, jeigu:
+        \[
+        A=
+        \begin{pmatrix}
+        4+i & 3-6i\\
+        4+i & -9+6i
+        \end{pmatrix},
+        \quad
+        B=
+        \begin{pmatrix}
+        -2+i & -6-4i\\
+        -4-2i & 3+i
+        \end{pmatrix},
+        \quad
+        C=
+        \begin{pmatrix}
+        -1+4i & -1-6i\\
+        -8+4i & 5-4i
+        \end{pmatrix}.
+        \]
+
+    \end{problem}
+
+    \begin{solution}
+        \textbf{1) Apskaičiuojame $B^2$.}
+        \[
+        B^2=BB \text{, todėl:}
+        \]
+        \[
+        (B^2)_{11}=(-2+i)^2+(-6-4i)(-4-2i)= (3-4i)+(16+28i)=19+24i,
+        \]
+        \[
+        (B^2)_{12}=(-2+i)(-6-4i)+(-6-4i)(3+i)=(16+2i)+(-14-18i)=2-16i,
+        \]
+        \[
+        (B^2)_{21}=(-4-2i)(-2+i)+(3+i)(-4-2i)=(10+0i)+(-10i)=-10i,
+        \]
+        \[
+        (B^2)_{22}=(-4-2i)(-6-4i)+(3+i)^2=(16+28i)+(8+6i)=24+34i.
+        \]
+        Taigi
+        \[
+        B^2=
+        \begin{pmatrix}
+        19+24i & 2-16i\\
+        -10i & 24+34i
+        \end{pmatrix}.
+        \]
+
+        \medskip
+        \textbf{2) Apskaičiuojame $A^\dagger$.}
+
+        Transponuojam matricą ir pakeičiam visus elementus jungtiniais:
+        \[
+        A^\dagger=
+        \begin{pmatrix}
+        4-i & 4-i\\
+        3+6i & -9-6i
+        \end{pmatrix}.
+        \]
+
+        \medskip
+        \textbf{3) Apskaičiuojame $C^{-1}$ ir $C^{-2}$.}
+        
+        Tikrinam ar atvirkštinė gali egzistuoti:
+        \[
+        \det(C)=(-1+4i)(5-4i)-(-1-6i)(-8+4i)
+        =(11+24i)-(32+44i)=-21-20i\neq 0.
+        \]
+        Panaudosim formulę $2 \times 2$ matricos atvirkštinei rasti:
+        \[
+        C^{-1}=\frac{1}{\det(C)}
+        \begin{pmatrix}
+        5-4i & 1+6i\\
+        8-4i & -1+4i
+        \end{pmatrix}.
+        \]
+        "Racionalizuojam" trupmenos apačią:
+        \[
+        \frac{1}{-21-20i}=\frac{-21+20i}{(-21)^2+20^2}=\frac{-21+20i}{841}.
+        \]
+        Todėl atvirkštinė yra:
+        \[
+        C^{-1}=
+        \begin{pmatrix}
+        \dfrac{-25+184i}{841} & \dfrac{-141-106i}{841}\\[6pt]
+        \dfrac{-88+244i}{841} & \dfrac{-59-104i}{841}
+        \end{pmatrix}.
+        \]
+        Jau labai nusibodo skaičiuot ranka, panaudojau (\url{https://matrix.reshish.com/matrix-multiplication/}).
+        \[
+        C^{-2}=(C^{-1})^2=
+        \begin{pmatrix}
+        \dfrac{5041-34276i}{707281} & \dfrac{20324-2376i}{707281}\\[6pt]
+        \dfrac{-12128-27536i}{707281} & \dfrac{30937-12804i}{707281}
+        \end{pmatrix},
+        \]
+
+        \medskip
+        \textbf{4) Apskaičiuojame $(A^{-1})^\dagger$.}
+        \[
+        \det(A)=(4+i)(-9+6i)-(3-6i)(4+i)=(-42+15i)-(18-21i)=-60+36i\neq 0.
+        \]
+        \[
+        A^{-1}=\frac{1}{\det(A)}
+        \begin{pmatrix}
+        -9+6i & -(3-6i)\\
+        -(4+i) & 4+i
+        \end{pmatrix}
+        =\frac{1}{-60+36i}
+        \begin{pmatrix}
+        -9+6i & -3+6i\\
+        -4-i & 4+i
+        \end{pmatrix}.
+        \]
+        Kadangi
+        \[
+        \frac{1}{-60+36i}=\frac{-60-36i}{60^2+36^2}=\frac{-5-3i}{408},
+        \]
+        gaunam:
+        \[
+        A^{-1}=
+        \begin{pmatrix}
+        \dfrac{21-i}{136} & \dfrac{11-7i}{136}\\[6pt]
+        \dfrac{1+i}{24} & -\dfrac{1+i}{24}
+        \end{pmatrix}.
+        \]
+        Tada
+        \[
+        (A^{-1})^\dagger=
+        \begin{pmatrix}
+        \dfrac{21+i}{136} & \dfrac{1-i}{24}\\[6pt]
+        \dfrac{11+7i}{136} & -\dfrac{1-i}{24}
+        \end{pmatrix}.
+        \]
+
+        \medskip
+        \textbf{5) Apskaičiuojame $3A^\dagger C^{-2}$.}
+
+        Vėl naudojam (\url{https://matrix.reshish.com/matrix-multiplication/}).
+        \[
+        3A^\dagger C^{-2}
+        =
+        \begin{pmatrix}
+        \dfrac{-270480-720483i}{707281} & \dfrac{569592-335943i}{707281}\\[8pt]
+        \dfrac{494145+744030i}{707281} & \dfrac{-840087+133290i}{707281}
+        \end{pmatrix}.
+        \]
+
+        \medskip
+        \textbf{6) Sudedam viską į vieną.}
+
+        Nežinau ar čia teisingai, bet atrodo labai keistai :D
+        \[
+        B^2 + 3A^{\dagger}C^{-2} + (A^{-1})^{\dagger}
+        =
+        \begin{pmatrix}
+        \frac{1805681725+2211286777i}{96190216}
+        &
+        \frac{48326977-280365817i}{16974744}\\[10pt]
+        \frac{74983811-855763113i}{96190216}
+        &
+        \frac{386524487+581047537i}{16974744}
+        \end{pmatrix}.
+        \]
+    \end{solution}
+
+\end{document}

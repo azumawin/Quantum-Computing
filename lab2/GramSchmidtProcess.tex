@@ -1,0 +1,103 @@
+\documentclass[11pt, parskip=half]{scrartcl}
+
+\usepackage{azuma}
+\usepackage[raggedbottom]{stablespacing}
+\usepackage[a4paper, margin=1in]{geometry} % center margins
+\usepackage{needspace}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\setlist[itemize]{topsep=0pt, itemsep=0.1em} %partopsep, parsep
+
+\begin{document}
+    \title{Gram Schmidt process}
+    \subtitle{Notes}
+    \maketitle
+    \tableofcontents
+
+    \section{Prerequisites}
+    \begin{definition}[Linearly independent vectors]
+        A set of vectors $\{v_1, v_2, \dots, v_k\}$ is linearly independent if the only solution to the equation
+        $c_1 v_1 + c_2 v_2 + \dots + c_k v_k = 0$ is $c_1 = c_2 = \dots = c_k = 0$. 
+        
+        Intuitively this means that no vector in the set can be expressed as a linear combination of the others.
+    \end{definition}
+    \begin{definition}[Vector basis]
+        A set of vectors $\{v_1, v_2, \dots, v_k\}$ is a basis for a vector space if:
+        \begin{itemize}
+            \item It's linearly independent (each vector in the set is linearly independent of one another)
+            \item It spans the vector space (every vector in the vector space can be expressed as a linear combination of the basis vectors)
+        \end{itemize}
+    \end{definition}
+    \begin{theorem}
+        If you have $n$ vectors in $\mathbb{F}^n$, place them as columns of an $n\times n$ matrix $A$. Then
+        \[
+        \det(A)\neq 0
+        \iff
+        \text{the vectors are linearly independent}
+        \iff
+        \text{they form a basis of }\mathbb{F}^n.
+        \]
+        If the number of vectors is not $n$, or if the vectors are not in $\mathbb{F}^n$, then this determinant
+        criterion does not apply (since there is no associated square matrix).
+    \end{theorem}
+    \begin{definition}[Inner (dot) product for vectors over $\mathbb{R}$]
+        The inner product of two vectors $v = (v_1, v_2, \dots, v_n)$ and $w = (w_1, w_2, \dots, w_n)$ is defined as:
+        $\langle v, w \rangle = v_1 w_1 + v_2 w_2 + \dots + v_n w_n$, or the matrix form:
+        $\langle v, w \rangle = v^T w$.
+    \end{definition}
+    \begin{definition}[Inner (dot) product for vectors over $\mathbb{C}$]
+        The inner product of two vectors $v = (v_1, v_2, \dots, v_n)$ and $w = (w_1, w_2, \dots, w_n)$ is defined as:
+        $\langle v, w \rangle = \bar{v_1} w_1 + \bar{v_2} w_2 + \dots + \bar{v_n} w_n$, or the matrix form:
+        $\langle v, w \rangle = v^{\dagger} w$.
+    \end{definition}
+    \begin{definition}[Orthogonal vectors]
+        A set of vectors $\{v_1, v_2, \dots, v_k\}$ is orthogonal if $\langle v_i, v_j \rangle = 0$ for all $i \neq j$.
+    \end{definition}
+    \begin{definition}[Orthonormal vectors]
+        A set of vectors $\{v_1, v_2, \dots, v_k\}$ is orthonormal if it's orthogonal and each vector has unit norm.
+    \end{definition}
+    \begin{definition}[Norm (length) of a vector]
+        The norm of a vector $v$ is defined as $\|v\| = \sqrt{\langle v, v \rangle}$.
+    \end{definition}
+    \begin{definition}[Projection of a vector onto another]
+        The projection of a vector $v$ onto a vector $w$ is defined as:
+        $\text{proj}_w v = \frac{\langle w, v \rangle}{\langle w, w \rangle} w \qquad (w\neq 0)$.
+    \end{definition}
+    \section{Gram Schmidt Process}
+    \begin{definition}[Gram Schmidt process]
+        Gram Schmidt process is a method for computing a set of orthogonal vectors from a set of linearly independent vectors.
+    \end{definition}
+
+    \noindent\textbf{Gram--Schmidt orthogonalization.}
+    Given $k$ nonzero linearly independent vectors $\mathbf{v}_1,\ldots,\mathbf{v}_k$,
+    the Gram--Schmidt process defines the vectors $\mathbf{u}_1,\ldots,\mathbf{u}_k$ as follows:
+
+    \[
+    \begin{aligned}
+    \mathbf{u}_1 &= \mathbf{v}_1,\\
+    \mathbf{u}_2 &= \mathbf{v}_2 - \operatorname{proj}_{\mathbf{u}_1}(\mathbf{v}_2),\\
+    \mathbf{u}_3 &= \mathbf{v}_3 - \operatorname{proj}_{\mathbf{u}_1}(\mathbf{v}_3) - \operatorname{proj}_{\mathbf{u}_2}(\mathbf{v}_3),\\
+    \mathbf{u}_4 &= \mathbf{v}_4 - \operatorname{proj}_{\mathbf{u}_1}(\mathbf{v}_4) - \operatorname{proj}_{\mathbf{u}_2}(\mathbf{v}_4) - \operatorname{proj}_{\mathbf{u}_3}(\mathbf{v}_4),\\
+    &\ \ \vdots\\
+    \mathbf{u}_k &= \mathbf{v}_k - \sum_{j=1}^{k-1}\operatorname{proj}_{\mathbf{u}_j}(\mathbf{v}_k),
+    \end{aligned}
+    \qquad
+    \begin{aligned}
+    \mathbf{e}_1 &= \frac{\mathbf{u}_1}{\lVert \mathbf{u}_1\rVert},\\
+    \mathbf{e}_2 &= \frac{\mathbf{u}_2}{\lVert \mathbf{u}_2\rVert},\\
+    \mathbf{e}_3 &= \frac{\mathbf{u}_3}{\lVert \mathbf{u}_3\rVert},\\
+    \mathbf{e}_4 &= \frac{\mathbf{u}_4}{\lVert \mathbf{u}_4\rVert},\\
+    &\ \ \vdots\\
+    \mathbf{e}_k &= \frac{\mathbf{u}_k}{\lVert \mathbf{u}_k\rVert}.
+    \end{aligned}
+    \]
+
+    The sequence $\mathbf{u}_1,\ldots,\mathbf{u}_k$ is the required system of orthogonal vectors,
+    and the normalized vectors $\mathbf{e}_1,\ldots,\mathbf{e}_k$ form an orthonormal set.
+    The calculation of the sequence $\mathbf{u}_1,\ldots,\mathbf{u}_k$ is known as Gram--Schmidt
+    orthogonalization, and the calculation of the sequence $\mathbf{e}_1,\ldots,\mathbf{e}_k$ is
+    known as Gram--Schmidt orthonormalization.
+
+\end{document}

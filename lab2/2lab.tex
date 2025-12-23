@@ -46,8 +46,7 @@
     \end{problem}
 
     \begin{solution}
-        Vektoriai $v_1, v_2, \dots, v_k$ yra tiesiškai priklausomi jei egzistuoja realūs (šiuo atveju kompleksiniai) skaičiai
-        $c_1, c_2, \dots, c_k$, kurie nėra visi nuliai, tokie kad:
+        Vektoriai $v_1, v_2, \dots, v_k$ yra tiesiškai nepriklausomi jei:
         \[
         c_1\vec{v}_1 + c_2\vec{v}_2 + \dots + c_k\vec{v}_k = \vec{0}
         \]
@@ -80,7 +79,7 @@
         m_3=\frac{-4-2i}{-3-i}=\frac{7+i}{5},\qquad
         m_4=\frac{2-3i}{-3-i}=\frac{-3+11i}{10}.
         \]
-        
+
         Gauname:
         \[
         \sim
@@ -112,7 +111,15 @@
         \right].
         \]
 
-        Matosi, kad vienintelis sistemos sprendinys yra $(c_1, c_2, c_3) = (0, 0, 0)$, todėl vektoriai $v_1, v_2, v_3$ yra tiesiškai nepriklausomi.
+        \[
+        \boxed{
+        \begin{array}{l}
+        \text{Matosi, kad vienintelis sistemos sprendinys yra } (c_1,c_2,c_3)=(0,0,0).\\
+        \therefore\ \text{vektoriai } v_1, v_2, v_3 \text{ yra tiesiškai nepriklausomi.}
+        \end{array}
+        }
+        \]
+
     \end{solution}
 
     % ----- PROBLEM 2 -----
@@ -140,7 +147,7 @@
 
     \end{problem}
 
-    \begin{solution}
+    \begin{solutionNewline}
         \textbf{1) Apskaičiuojame $B^2$.}
         \[
         B^2=BB \text{, todėl:}
@@ -180,7 +187,7 @@
 
         \medskip
         \textbf{3) Apskaičiuojame $C^{-1}$ ir $C^{-2}$.}
-        
+
         Tikrinam ar atvirkštinė gali egzistuoti:
         \[
         \det(C)=(-1+4i)(5-4i)-(-1-6i)(-8+4i)
@@ -266,11 +273,45 @@
         \end{pmatrix}.
         \]
 
-        \medskip
+        \begin{keeptogether}
         \textbf{6) Sudedam viską į vieną.}
-
-        Nežinau ar čia teisingai, bet atrodo labai keistai :D
         \[
+        B^2 + 3A^{\dagger}C^{-2} =
+        \begin{pmatrix}
+        19+24i & 2-16i\\
+        -10i & 24+34i
+        \end{pmatrix}
+        +
+        \begin{pmatrix}
+        \dfrac{-270480-720483i}{707281} & \dfrac{569592-335943i}{707281}\\[8pt]
+        \dfrac{494145+744030i}{707281} & \dfrac{-840087+133290i}{707281}
+        \end{pmatrix}
+        \]
+
+        \[
+        B^2 + 3A^{\dagger}C^{-2} =
+        \begin{pmatrix}
+        \dfrac{13167859+16254261i}{707281} & \dfrac{1984154-11652439i}{707281}\\[8pt]
+        \dfrac{494145-6328780i}{707281} & \dfrac{16134657+24180844i}{707281}
+        \end{pmatrix},
+        \]
+
+        \[
+        B^2 + 3A^{\dagger}C^{-2} + (A^{-1})^{\dagger}
+        =
+        \begin{pmatrix}
+        \dfrac{13160859+16247801i}{707281} & \dfrac{1985014-10719058i}{707281}\\[8pt]
+        \dfrac{494145+736949i}{707281} & \dfrac{1615057+24183744i}{707281}
+        \end{pmatrix}
+        +
+        \begin{pmatrix}
+        \dfrac{21+i}{136} & \dfrac{1-i}{24}\\[6pt]
+        \dfrac{11+7i}{136} & -\dfrac{1-i}{24}
+        \end{pmatrix}.
+        \]
+
+        \[
+        \boxed{
         B^2 + 3A^{\dagger}C^{-2} + (A^{-1})^{\dagger}
         =
         \begin{pmatrix}
@@ -280,8 +321,328 @@
         \frac{74983811-855763113i}{96190216}
         &
         \frac{386524487+581047537i}{16974744}
+        \end{pmatrix}
+        }
+        \]
+        \end{keeptogether}
+    \end{solutionNewline}
+
+    % ----- PROBLEM 3 -----
+    \begin{problem}
+        Užrašykite vektorių $\vec v_1$ bazėje $\{\vec v_2,\vec v_3,\vec v_4\}$.
+        \[
+        \vec v_1=
+        \begin{pmatrix}
+        -2-i\\
+        3+i\\
+        -2+4i
+        \end{pmatrix},
+        \qquad
+        \vec v_2=
+        \begin{pmatrix}
+        3+4i\\
+        3+2i\\
+        -5-i
+        \end{pmatrix},
+        \qquad
+        \vec v_3=
+        \begin{pmatrix}
+        -1+i\\
+        3-4i\\
+        -4-3i
+        \end{pmatrix},
+        \qquad
+        \vec v_4=
+        \begin{pmatrix}
+        -2-i\\
+        -2+i\\
+        1-4i
         \end{pmatrix}.
         \]
+    \end{problem}
+
+    \begin{solution}
+        Ieškome skaliarų $c_2,c_3,c_4\in\mathbb{C}$, kad
+        \[
+        \vec v_1=c_2\,\vec v_2+c_3\,\vec v_3+c_4\,\vec v_4.
+        \]
+        Gauname lygčių sistemą:
+        \[
+        \begin{cases}
+        (3+4i)c_2+(-1+i)c_3+(-2-i)c_4=-2-i,\\
+        (3+2i)c_2+(3-4i)c_3+(-2+i)c_4=3+i,\\
+        (-5-i)c_2+(-4-3i)c_3+(1-4i)c_4=-2+4i.
+        \end{cases}
+        \]
+        Pasiverčiam į Gauso eliminacijos matricą:
+        \[
+        \left[
+        \begin{array}{ccc|c}
+        3+4i & -1+i & -2-i & -2-i\\
+        3+2i & 3-4i & -2+i & 3+i\\
+        -5-i & -4-3i & 1-4i & -2+4i
+        \end{array}
+        \right].
+        \]
+        Išsprendę sistemą su sympy gauname:
+        \[
+        c_2=-\frac{16721}{14893}-\frac{4997}{14893}i,\qquad
+        c_3=-\frac{1074}{14893}+\frac{6303}{14893}i,\qquad
+        c_4=-\frac{323}{281}-\frac{540}{281}i.
+        \]
+        Taigi
+        \[
+        \boxed{
+        \vec v_1=
+        \left(-\frac{16721}{14893}-\frac{4997}{14893}i\right)\vec v_2
+        +\left(-\frac{1074}{14893}+\frac{6303}{14893}i\right)\vec v_3
+        +\left(-\frac{323}{281}-\frac{540}{281}i\right)\vec v_4
+        }
+        \]
     \end{solution}
+
+    % ----- PROBLEM 4 -----
+    \begin{problem}
+        Iš bazės iš ankstesnio uždavinio gaukite ortonormuotą bazę naudodami Gramo-Šmidto procesą
+        (\url{https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process}) ir normuodami gautus vektorius.
+        Detaliai aprašykite kiekvieną žingsnį.
+
+        \[
+        \vec v_1=
+        \begin{pmatrix}
+        3+4i\\
+        3+2i\\
+        -5-i
+        \end{pmatrix},
+        \qquad
+        \vec v_2=
+        \begin{pmatrix}
+        -1+i\\
+        3-4i\\
+        -4-3i
+        \end{pmatrix},
+        \qquad
+        \vec v_3=
+        \begin{pmatrix}
+        -2-i\\
+        -2+i\\
+        1-4i
+        \end{pmatrix}.
+        \]
+
+        \begin{remark*}
+            Pervadinau $\vec v_2$ į $\vec v_1$, $\vec v_3$ į $\vec v_2$, $\vec v_4$ į $\vec v_3$ (kiekvienam užd. skirtingas kontekstas).
+        \end{remark*}
+    \end{problem}
+
+    \begin{solutionNewline}
+        \textbf{Skaičiuojam $\vec u_1$}
+        \[
+        \vec u_1=\vec v_1.
+        \]
+        Normalizuojam $\vec u_1$, kad gauti $\vec e_1$:
+        \[
+        \langle u_1,u_1\rangle
+        = 64.
+        \]
+        \[
+        \|\vec u_1\|=8,\qquad
+        \vec e_1=\frac{\vec u_1}{\|\vec u_1\|}=\frac1{8}
+        \begin{pmatrix}
+        3+4i\\
+        3+2i\\
+        -5-i
+        \end{pmatrix}.
+        \]
+
+        \textbf{Skaičiuojam $\vec u_2$}
+        \begin{align*}
+        \langle u_1,v_2\rangle
+        =25.
+        \end{align*}
+    
+        Taigi projekcija:
+        \[
+        \operatorname{proj}_{u_1}(v_2)=\frac{\langle u_1,v_2\rangle}{\langle u_1,u_1\rangle}u_1
+        =\frac{25}{64}\,u_1.
+        \]
+        Tada
+        \[
+        \vec u_2=\vec v_2-\operatorname{proj}_{u_1}(v_2)=\vec v_2-\frac{25}{64}\vec v_1.
+        \]
+        Taigi:
+        \[
+        \vec u_2
+        =
+        \begin{pmatrix}
+        -1+i\\ 3-4i\\ -4-3i
+        \end{pmatrix}
+        -\frac{25}{64}
+        \begin{pmatrix}
+        3+4i\\ 3+2i\\ -5-i
+        \end{pmatrix}
+        =
+        \frac{1}{64}
+        \begin{pmatrix}
+        -139-36i\\
+        117-306i\\
+        -131-167i
+        \end{pmatrix}.
+        \]
+        Normalizuojam $\vec u_2$, kad gauti $\vec e_2$:
+        \begin{align*}
+        \langle u_2,u_2\rangle
+        =\frac{2703}{64}.
+        \end{align*}
+        Vadinasi
+        \[
+        \|\vec u_2\|=\sqrt{\langle u_2,u_2\rangle}
+        =\sqrt{\frac{2703}{64}}
+        =\frac{\sqrt{2703}}{8},
+        \]
+        ir ortonormuotas vektorius
+        \[
+        \vec e_2=\frac{\vec u_2}{\|\vec u_2\|}
+        =\frac{\frac{1}{64}\begin{pmatrix}
+        -139-36i\\
+        117-306i\\
+        -131-167i
+        \end{pmatrix}}{\frac{\sqrt{2703}}{8}}
+        =\frac{1}{8\sqrt{2703}}
+        \begin{pmatrix}
+        -139-36i\\
+        117-306i\\
+        -131-167i
+        \end{pmatrix}.
+        \]
+
+
+        \textbf{Skaičiuojam $\vec u_3$}
+
+        Pirmiausia randame projekciją į $\vec u_1$:
+        \begin{align*}
+        \langle u_1,v_3\rangle
+        = -15+33i
+        \end{align*}
+        Taigi
+        \[
+        \operatorname{proj}_{u_1}(v_3)
+        = \frac{\langle u_1,v_3\rangle}{\langle u_1,u_1\rangle}u_1
+        = \frac{-15+33i}{64}\,u_1.
+        \]
+
+        Tada randame projekciją į $\vec u_2$:
+        \begin{align*}
+        \langle u_2,v_3\rangle
+        = \frac{311+263i}{64}
+        \end{align*}
+        Taigi
+        \[
+        \operatorname{proj}_{u_2}(v_3)
+        = \frac{\langle u_2,v_3\rangle}{\langle u_2,u_2\rangle}u_2
+        =\frac{311+263i}{2703}\,u_2.
+        \]
+
+        Belieka įsistatyti ir suprastinti:
+        \[
+        u_3=v_3-\operatorname{proj}_{u_1}(v_3)-\operatorname{proj}_{u_2}(v_3)
+        = v_3-\frac{-15+33i}{64}u_1-\frac{311+263i}{2703}u_2
+        \]
+        \[
+        = \begin{pmatrix}
+        -2-i\\
+        -2+i\\
+        1-4i
+        \end{pmatrix}-\frac{-15+33i}{64}
+        \begin{pmatrix}
+        3+4i\\
+        3+2i\\
+        -5-i
+        \end{pmatrix}-\frac{311+263i}{2703}
+        \frac{1}{64}
+        \begin{pmatrix}
+        -139-36i\\
+        117-306i\\
+        -131-167i
+        \end{pmatrix}
+        \]
+        Supaprastinus gauname
+        \[
+        \vec u_3=\frac{1}{51}
+        \begin{pmatrix}
+        49-68i\\
+        -48+15i\\
+        -36-59i
+        \end{pmatrix}.
+        \]
+        Normalizuojam $\vec u_3$, kad gauti $\vec e_3$:
+        \begin{align*}
+        \langle u_3,u_3\rangle
+        =\frac{281}{51}.
+        \end{align*}
+        Vadinasi
+        \[
+        \|\vec u_3\|=\sqrt{\langle u_3,u_3\rangle}
+        =\sqrt{\frac{281}{51}}
+        \]
+        ir ortonormuotas vektorius
+        \[
+        \vec e_3=\frac{\vec u_3}{\|\vec u_3\|}
+        =\frac{\frac{1}{51}
+        \begin{pmatrix}
+        49-68i\\
+        -48+15i\\
+        -36-59i
+        \end{pmatrix}}{\sqrt{\frac{281}{51}}}
+        =\frac{\frac{1}{51}
+        \begin{pmatrix}
+        49-68i\\
+        -48+15i\\
+        -36-59i
+        \end{pmatrix}}{\frac{\sqrt{14331}}{51}}
+        =\frac{1}{\sqrt{14331}}
+        \begin{pmatrix}
+        49-68i\\
+        -48+15i\\
+        -36-59i
+        \end{pmatrix}.
+        \]
+
+        \textbf{Rezultatas}
+
+        Gavom ortonormuotą bazę iš pradinės bazės:
+        \[
+        \boxed{
+        \left\{
+        \vec e_1,\vec e_2,\vec e_3
+        \right\}
+        =
+        \left\{
+        \frac1{8}
+        \begin{pmatrix}
+        3+4i\\
+        3+2i\\
+        -5-i
+        \end{pmatrix},
+        \;
+        \frac{1}{8\sqrt{2703}}
+        \begin{pmatrix}
+        -139-36i\\
+        117-306i\\
+        -131-167i
+        \end{pmatrix},
+        \;
+        \frac{1}{\sqrt{14331}}
+        \begin{pmatrix}
+        49-68i\\
+        -48+15i\\
+        -36-59i
+        \end{pmatrix}
+        \right\}.
+        }
+        \]
+    \end{solutionNewline}
+
+
 
 \end{document}

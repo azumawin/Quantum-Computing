@@ -30,18 +30,6 @@
             \item It spans the vector space (every vector in the vector space can be expressed as a linear combination of the basis vectors)
         \end{itemize}
     \end{definition}
-    \begin{theorem}
-        If you have $n$ vectors in $\mathbb{F}^n$, place them as columns of an $n\times n$ matrix $A$. Then
-        \[
-        \det(A)\neq 0
-        \iff
-        \text{the vectors are linearly independent}
-        \iff
-        \text{they form a basis of }\mathbb{F}^n.
-        \]
-        If the number of vectors is not $n$, or if the vectors are not in $\mathbb{F}^n$, then this determinant
-        criterion does not apply (since there is no associated square matrix).
-    \end{theorem}
     \begin{definition}[Inner (dot) product for vectors over $\mathbb{R}$]
         The inner product of two vectors $v = (v_1, v_2, \dots, v_n)$ and $w = (w_1, w_2, \dots, w_n)$ is defined as:
         $\langle v, w \rangle = v_1 w_1 + v_2 w_2 + \dots + v_n w_n$, or the matrix form:
@@ -56,7 +44,7 @@
         A set of vectors $\{v_1, v_2, \dots, v_k\}$ is orthogonal if $\langle v_i, v_j \rangle = 0$ for all $i \neq j$.
     \end{definition}
     \begin{definition}[Orthonormal vectors]
-        A set of vectors $\{v_1, v_2, \dots, v_k\}$ is orthonormal if it's orthogonal and each vector has unit norm.
+        A set of vectors $\{v_1, v_2, \dots, v_k\}$ is orthonormal if it's orthogonal and each vector has length 1 (was normalized).
     \end{definition}
     \begin{definition}[Norm (length) of a vector]
         The norm of a vector $v$ is defined as $\|v\| = \sqrt{\langle v, v \rangle}$.

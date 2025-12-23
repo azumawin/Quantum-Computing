@@ -5,3 +5,5 @@
 *.synctex.gz
 *.synctex.gz.sum.synctex
 *.toc
+.venv
+__pycache__/
